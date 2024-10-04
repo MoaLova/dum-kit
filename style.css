@@ -1,0 +1,112 @@
+/* General styling for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container for the todo list */
+.todo-container {
+    background-color: rgb(237, 213, 213);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 600px;
+}
+
+/* Heading style */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Style for the form input and button */
+form {
+    display: flex;
+    justify-content: space-between;
+}
+
+#todo-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px;
+    background-color: #569b66;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Container for the lists */
+.list-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Individual list section */
+.list-section {
+    width: 45%;
+}
+
+/* Style for the todo list */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between; /* Se till att elementen sprids ut */
+    align-items: center; /* Centra vertikalt */
+    background-color: #f9f5f5;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border-left: 7px solid #9cbcde;
+    transition: 0.3s;
+}
+
+/* Flytta checkboxen */
+.todo-item input[type="checkbox"] {
+    margin-left: auto; /* Tryck checkboxen till höger */
+    margin-right: 20px; /* Justera värdet för att flytta mer till höger */
+}
+
+
+/* Strikethrough text for completed tasks */
+.todo-item.completed {
+    text-decoration:none;
+    opacity: 0.6;
+    border-left-color: #28a745;
+}
+
+/* Remove button style */
+.remove-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background-color: #c82333;
+}
+
