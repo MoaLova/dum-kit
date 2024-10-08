@@ -1,4 +1,3 @@
-// Get the completed list element and clear button
 const completedList = document.getElementById('completed-list');
 const clearCompletedButton = document.getElementById('clear-completed');
 

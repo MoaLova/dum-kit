@@ -72,8 +72,8 @@ ul {
 
 .todo-item {
     display: flex;
-    justify-content: space-between; /* Se till att elementen sprids ut */
-    align-items: center; /* Centra vertikalt */
+    justify-content: space-between;
+    align-items: center;
     background-color: #f9f5f5;
     margin-bottom: 10px;
     padding: 10px;
@@ -82,16 +82,14 @@ ul {
     transition: 0.3s;
 }
 
-/* Flytta checkboxen */
+/* Checkbox styling */
 .todo-item input[type="checkbox"] {
-    margin-left: auto; /* Tryck checkboxen till höger */
-    margin-right: 20px; /* Justera värdet för att flytta mer till höger */
+    margin-left: auto;
+    margin-right: 20px;
 }
-
 
 /* Strikethrough text for completed tasks */
 .todo-item.completed {
-    text-decoration:none;
     opacity: 0.6;
     border-left-color: #28a745;
 }
@@ -110,3 +108,24 @@ ul {
     background-color: #c82333;
 }
 
+/* Firework effect */
+.firework {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(20);
+        opacity: 0;
+    }
+}

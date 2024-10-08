@@ -44,8 +44,9 @@ function addTask(taskText) {
     pendingList.appendChild(li);
 
     // Add event listener for checkbox
-    checkbox.addEventListener('change', function() {
+    checkbox.addEventListener('change', function(event) {
         if (checkbox.checked) {
+            createFirework(event); // Trigger firework effect on completion
             setTimeout(() => {
                 moveToCompleted(taskText); // Move task to completed after 3 seconds
                 li.remove(); // Remove the task from the pending list
@@ -68,6 +69,10 @@ function moveToCompleted(taskText) {
     const completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
     completedTasks.push(taskText);
     localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+
+    let pendingTasks = JSON.parse(localStorage.getItem('pendingTasks')) || [];
+    pendingTasks = pendingTasks.filter(task => task !== taskText);
+    localStorage.setItem('pendingTasks', JSON.stringify(pendingTasks));
 }
 
 // Save pending tasks to localStorage
@@ -84,6 +89,27 @@ function loadPendingTasks() {
     const tasks = JSON.parse(localStorage.getItem('pendingTasks')) || [];
     tasks.forEach(task => addTask(task));
 }
+
+// Function to create firework effect
+function createFirework(event) {
+    const firework = document.createElement('div');
+    firework.className = 'firework';
+
+    const rect = event.target.getBoundingClientRect();
+    firework.style.left = `${rect.left + rect.width / 2}px`;
+    firework.style.top = `${rect.top + rect.height / 2}px`;
+
+    document.body.appendChild(firework);
+
+    setTimeout(() => {
+        firework.remove();
+    }, 1000); // Remove firework after animation
+}
+
+// Add event listeners to checkboxes after loading tasks
+document.querySelectorAll('.checkbox').forEach(checkbox => {
+    checkbox.addEventListener('change', createFirework);
+});
 
 
 
