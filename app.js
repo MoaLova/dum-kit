@@ -46,7 +46,7 @@ function addTask(taskText) {
     // Add event listener for checkbox
     checkbox.addEventListener('change', function(event) {
         if (checkbox.checked) {
-            createFirework(event); // Trigger firework effect on completion
+            showImage(); // Show image when task is marked as completed
             setTimeout(() => {
                 moveToCompleted(taskText); // Move task to completed after 3 seconds
                 li.remove(); // Remove the task from the pending list
@@ -90,26 +90,31 @@ function loadPendingTasks() {
     tasks.forEach(task => addTask(task));
 }
 
-// Function to create firework effect
-function createFirework(event) {
-    const firework = document.createElement('div');
-    firework.className = 'firework';
+// Function to show the image when a task is completed
+function showImage() {
+    const image = document.createElement('img');
+    image.src = 'https://i2.wp.com/winkgo.com/wp-content/uploads/2018/12/23-Great-Job-Memes-18.jpg?resize=768%2C878&ssl=1'; // Lägg till din bilds URL eller filväg
+    image.className = 'complete-img';
 
-    const rect = event.target.getBoundingClientRect();
-    firework.style.left = `${rect.left + rect.width / 2}px`;
-    firework.style.top = `${rect.top + rect.height / 2}px`;
+    // Center the image on the screen
+    image.style.left = '50%';
+    image.style.top = '50%';
+    image.style.transform = 'translate(-50%, -50%)';
 
-    document.body.appendChild(firework);
+    // Append the image to the body
+    document.body.appendChild(image);
 
+    // Remove the image after the animation completes
     setTimeout(() => {
-        firework.remove();
-    }, 1000); // Remove firework after animation
+        image.remove();
+    }, 2000); // Bilden försvinner efter 2 sekunder
 }
 
 // Add event listeners to checkboxes after loading tasks
 document.querySelectorAll('.checkbox').forEach(checkbox => {
-    checkbox.addEventListener('change', createFirework);
+    checkbox.addEventListener('change', showImage);
 });
+
 
 
 
