@@ -1,54 +1,65 @@
 /* General styling for the body */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f4f4f4;  /* Light gray background */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    color: #333; /* Darker text for contrast */
 }
 
 /* Container for the todo list */
 .todo-container {
-    background-color: rgb(237, 213, 213);
+    background-color: #f5e8e8;  /* Soft beige */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     width: 600px;
+    max-width: 90%;  /* Ensures responsiveness */
 }
 
 /* Heading style */
 h1 {
     text-align: center;
-    color: #333;
+    color: #6b4f4f;  /* Warm, muted color */
+    font-size: 28px;
+    margin-bottom: 15px;
 }
 
 /* Style for the form input and button */
 form {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
+/* Input styling */
 #todo-input {
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 8px;
     margin-right: 10px;
+    background-color: #f4f4f4;  /* Light background */
+    font-size: 16px;
 }
 
+/* Button styling */
 button {
-    padding: 10px;
-    background-color: #569b66;
+    padding: 12px 20px;
+    background-color: #a1c4d9;  /* Light blue */
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
+/* Button hover effect */
 button:hover {
-    background-color: #218838;
+    background-color: #6fa1b7;  /* Darker blue */
 }
 
 /* Container for the lists */
@@ -70,15 +81,21 @@ ul {
     margin: 0;
 }
 
+/* Style for individual todo items */
 .todo-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f9f5f5;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 12px;
-    transition: 0.3s;
+    background-color: #f9f5f5;  /* Soft pinkish background */
+    margin-bottom: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* On hover, give a soft color change */
+.todo-item:hover {
+    background-color: #f3d3d3;  /* Soft hover effect */
 }
 
 /* Checkbox styling */
@@ -90,34 +107,37 @@ ul {
 /* Strikethrough text for completed tasks */
 .todo-item.completed {
     opacity: 0.6;
-    border-left-color: #28a745;
+    border-left: 4px solid #a1c4d9;  /* Blue border for completed tasks */
 }
 
 /* Remove button style */
 .remove-btn {
-    background-color: #dc3545;
+    background-color: #f4a6a6;  /* Soft powder pink */
     color: white;
     border: none;
-    border-radius: 3px;
-    padding: 5px;
+    border-radius: 6px;
+    padding: 6px 10px;
     cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
 }
 
+/* Remove button hover effect */
 .remove-btn:hover {
-    background-color: #c82333;
+    background-color: #f06b6b;  /* Darker pink on hover */
 }
 
+/* Complete message styling */
 .complete-msg {
-    font-size: 30px !important;
+    font-size: 30px;
     font-weight: bold;
-    color: #000000; 
-    background-color: #f6f4f1; 
-    padding: 12px;
+    color: #333;
+    background-color: #f5e8e8;  /* Soft beige background */
+    padding: 16px;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     opacity: 1;
 }
-
 
 /* Animation for the message to fade out */
 @keyframes fadeOut {
@@ -129,13 +149,26 @@ ul {
     }
 }
 
+/* Completed task count styling */
 #completed-count {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     margin-bottom: 20px;
     text-align: center;
+    color: #6b4f4f;  /* Muted text color */
 }
 
+/* Link styling */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #6fa1b7;  /* Blue text */
+    font-weight: bold;
+}
 
-
-
+/* Link hover effect */
+a:hover {
+    color: #4a85a7;  /* Slightly darker blue */
+}
