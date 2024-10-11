@@ -1,15 +1,20 @@
-// Get elements from the DOM
+/// Get elements from the DOM
 const todoForm = document.getElementById('todo-form');
 const todoInput = document.getElementById('todo-input');
 const pendingList = document.getElementById('pending-list');
+const completedCountElement = document.getElementById('completed-count');
 
-// Load pending tasks from localStorage on page load
-document.addEventListener('DOMContentLoaded', loadPendingTasks);
+let completedCount = 0; // Keep track of completed tasks
+
+// Load pending tasks and completed count from localStorage on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadPendingTasks();
+    loadCompletedCount(); // Load the completed task count
+});
 
 // Add event listener for form submission
-todoForm.addEventListener('submit', function(event) {
+todoForm.addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent form from submitting
-
     const taskText = todoInput.value.trim();
 
     if (taskText !== "") {
@@ -44,9 +49,9 @@ function addTask(taskText) {
     pendingList.appendChild(li);
 
     // Add event listener for checkbox
-    checkbox.addEventListener('change', function(event) {
+    checkbox.addEventListener('change', function (event) {
         if (checkbox.checked) {
-            showImage(); // Show image when task is marked as completed
+            showMessage(); // Show message when task is marked as completed
             setTimeout(() => {
                 moveToCompleted(taskText); // Move task to completed after 3 seconds
                 li.remove(); // Remove the task from the pending list
@@ -55,7 +60,7 @@ function addTask(taskText) {
     });
 
     // Add event listener for removing the task
-    removeBtn.addEventListener('click', function(event) {
+    removeBtn.addEventListener('click', function (event) {
         event.stopPropagation(); // Prevent triggering the complete task event
         li.remove();
         savePendingTasks(); // Update pending tasks in localStorage
@@ -70,12 +75,17 @@ function moveToCompleted(taskText) {
     completedTasks.push(taskText);
     localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
 
+    // Increase completed count
+    completedCount++;
+    updateCompletedCount(); // Update count in UI
+    saveCompletedCount(); // Save count to localStorage
+
     let pendingTasks = JSON.parse(localStorage.getItem('pendingTasks')) || [];
     pendingTasks = pendingTasks.filter(task => task !== taskText);
     localStorage.setItem('pendingTasks', JSON.stringify(pendingTasks));
 }
 
-// Save pending tasks to localStorage
+// Function to save pending tasks to localStorage
 function savePendingTasks() {
     const tasks = [];
     document.querySelectorAll('#pending-list .todo-item span').forEach(task => {
@@ -84,37 +94,57 @@ function savePendingTasks() {
     localStorage.setItem('pendingTasks', JSON.stringify(tasks));
 }
 
-// Load pending tasks from localStorage
+// Function to load pending tasks from localStorage
 function loadPendingTasks() {
     const tasks = JSON.parse(localStorage.getItem('pendingTasks')) || [];
     tasks.forEach(task => addTask(task));
 }
 
-// Function to show the image when a task is completed
-function showImage() {
-    const image = document.createElement('img');
-    image.src = 'https://i2.wp.com/winkgo.com/wp-content/uploads/2018/12/23-Great-Job-Memes-18.jpg?resize=768%2C878&ssl=1'; // Lägg till din bilds URL eller filväg
-    image.className = 'complete-img';
-
-    // Center the image on the screen
-    image.style.left = '50%';
-    image.style.top = '50%';
-    image.style.transform = 'translate(-50%, -50%)';
-
-    // Append the image to the body
-    document.body.appendChild(image);
-
-    // Remove the image after the animation completes
-    setTimeout(() => {
-        image.remove();
-    }, 2000); // Bilden försvinner efter 2 sekunder
+// Function to update the completed task count in the UI
+function updateCompletedCount() {
+    completedCountElement.textContent = `Completed tasks: ${completedCount}`;
 }
 
-// Add event listeners to checkboxes after loading tasks
-document.querySelectorAll('.checkbox').forEach(checkbox => {
-    checkbox.addEventListener('change', showImage);
-});
+// Save completed task count to localStorage
+function saveCompletedCount() {
+    localStorage.setItem('completedCount', completedCount);
+}
 
+// Load completed task count from localStorage
+function loadCompletedCount() {
+    const savedCount = localStorage.getItem('completedCount');
+    if (savedCount) {
+        completedCount = parseInt(savedCount, 10);
+        updateCompletedCount();
+    }
+}
 
+// Array with messages to show when a task is completed
+const messages = [
+    "Great job!",
+    "Well done!",
+    "You did it!",
+    "Keep up the good work!",
+    "Awesome!"
+];
 
+// Function to show a random message when a task is completed
+function showMessage() {
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
 
+    const messageElement = document.createElement('div');
+    messageElement.textContent = randomMessage;
+    messageElement.className = 'complete-msg';
+
+    messageElement.style.position = 'absolute';
+    messageElement.style.left = '50%';
+    messageElement.style.top = '50%';
+    messageElement.style.transform = 'translate(-50%, -50%)';
+    messageElement.style.fontSize = '40px';
+
+    document.body.appendChild(messageElement);
+
+    setTimeout(() => {
+        messageElement.remove();
+    }, 2000);
+}

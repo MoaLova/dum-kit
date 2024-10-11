@@ -25,8 +25,12 @@ function addCompletedTask(taskText) {
 }
 
 // Clear all completed tasks
-clearCompletedButton.addEventListener('click', function() {
+clearCompletedButton.addEventListener('click', function () {
     completedList.innerHTML = ''; // Clear the displayed list
     localStorage.removeItem('completedTasks'); // Clear completed tasks from localStorage
-});
 
+    // Reset completed count to 0
+    localStorage.setItem('completedCount', 0);
+    completedCount = 0;
+    updateCompletedCount(); // Update count in UI
+});
