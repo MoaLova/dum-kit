@@ -9,7 +9,6 @@ body {
     margin: 0;
     color: #333; /* Darker text for contrast */
 }
-
 /* Container for the todo list */
 .todo-container {
     background-color: #f5e8e8;  /* Soft beige */
@@ -49,7 +48,7 @@ form {
 /* Button styling */
 button {
     padding: 12px 20px;
-    background-color: #a1c4d9;  /* Light blue */
+    background-color: #396076;  /* Light blue */
     color: white;
     border: none;
     border-radius: 8px;
@@ -106,13 +105,13 @@ ul {
 
 /* Strikethrough text for completed tasks */
 .todo-item.completed {
-    opacity: 0.6;
-    border-left: 4px solid #a1c4d9;  /* Blue border for completed tasks */
+    opacity: 0.8;
+    border-left: 4px solid #59745c;  /* Blue border for completed tasks */
 }
 
 /* Remove button style */
 .remove-btn {
-    background-color: #f4a6a6;  /* Soft powder pink */
+    background-color: #d87676;  /* Soft powder pink */
     color: white;
     border: none;
     border-radius: 6px;
@@ -164,7 +163,7 @@ a {
     text-align: center;
     margin-top: 15px;
     text-decoration: none;
-    color: #6fa1b7;  /* Blue text */
+    color: #315868;  /* Blue text */
     font-weight: bold;
 }
 

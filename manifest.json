@@ -1,0 +1,10 @@
+{
+    "name": "list app",
+    "short_name": "listapp",
+    "start_url": "/index.html",
+    "display": " ", 
+    "background_color": "#f4f4f4",
+    "theme_color": " ",
+    "orientation": " ",
+    "icons": " "
+}
